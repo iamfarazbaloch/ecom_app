@@ -1,8 +1,10 @@
 import 'package:ecom_app/constant/colors.dart';
 import 'package:ecom_app/constant/images.dart';
+import 'package:ecom_app/model/recommended_model.dart';
 import 'package:ecom_app/widgets/my_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import '../widgets/recommended_tiles.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,13 +14,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<String> categoryList = ['Hottest', 'Popular', 'New Combo', 'Top'];
   final controller = TextEditingController();
+
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-              const Gap(20),
+              const Gap(10),
               const Text(
                 'Hello! Tony,\nWhat fruit salad combo do you want today?',
                 style: TextStyle(
@@ -61,11 +66,77 @@ class _HomePageState extends State<HomePage> {
                 icon: Icons.search,
                 text: 'Search for fruits salad combo',
               ),
-              const Gap(20),
+              const Gap(30),
               const Text(
                 'Recommended Combo',
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
+              const Gap(20),
+              GridView.builder(
+                itemCount: recommendedList.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 20,
+                  childAspectRatio: 0.8,
+                ),
+                itemBuilder: (context, index) {
+                  return RecommendedTile(item: recommendedList[index]);
+                },
+              ),
+              const Gap(30),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: SizedBox(
+                  height: 50,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: categoryList.length,
+                    itemBuilder: (context, index) {
+                      final isSelected = index == selectedIndex;
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 24),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                categoryList[index],
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color:
+                                      isSelected ? Colors.black : Colors.grey,
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              Container(
+                                height: 4,
+                                width: 30,
+                                decoration: BoxDecoration(
+                                  color:
+                                      isSelected
+                                          ? orangeColor
+                                          : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+              const Gap(30),
             ],
           ),
         ),
