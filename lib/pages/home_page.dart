@@ -1,9 +1,11 @@
 import 'package:ecom_app/constant/colors.dart';
 import 'package:ecom_app/constant/images.dart';
 import 'package:ecom_app/model/recommended_model.dart';
+import 'package:ecom_app/model/category_model.dart';
 import 'package:ecom_app/widgets/my_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import '../widgets/category_tiles.dart';
 import '../widgets/recommended_tiles.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,9 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<String> categoryList = ['Hottest', 'Popular', 'New Combo', 'Top'];
   final controller = TextEditingController();
-
+  final List<String> filterTabs = ['Hottest', 'Popular', 'New Combo', 'Top'];
   int selectedIndex = 0;
 
   @override
@@ -87,13 +88,15 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
               const Gap(30),
+
+              // Tab Filter Row
               Padding(
                 padding: const EdgeInsets.only(left: 16.0),
                 child: SizedBox(
                   height: 50,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: categoryList.length,
+                    itemCount: filterTabs.length,
                     itemBuilder: (context, index) {
                       final isSelected = index == selectedIndex;
                       return GestureDetector(
@@ -108,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                categoryList[index],
+                                filterTabs[index],
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
@@ -136,7 +139,21 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const Gap(30),
+
+              const SizedBox(height: 30),
+
+              SizedBox(
+                height: 130,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categoryList.length,
+                  itemBuilder: (context, index) {
+                    final item = categoryList[index];
+
+                    return CategoryTile(item: item);
+                  },
+                ),
+              ),
             ],
           ),
         ),
