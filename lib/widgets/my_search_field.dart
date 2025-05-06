@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 
 class MySearchField extends StatelessWidget {
   final TextEditingController controller;
-  const MySearchField({super.key, required this.controller});
+  final IconData? icon;
+  final String? text;
+  const MySearchField({
+    super.key,
+    required this.controller,
+    this.icon,
+    this.text,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,15 +17,16 @@ class MySearchField extends StatelessWidget {
       height: 70,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(14),
       ),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
           border: OutlineInputBorder(borderSide: BorderSide.none),
-          hintText: 'Tony',
+          hintText: text,
           hintStyle: const TextStyle(color: Colors.grey, fontSize: 20),
+          prefixIcon: Icon(icon, color: Colors.grey),
         ),
       ),
     );

@@ -10,12 +10,13 @@ import '../constant/images.dart';
 class AuthenticationPage extends StatelessWidget {
   AuthenticationPage({super.key});
   final controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -28,40 +29,39 @@ class AuthenticationPage extends StatelessWidget {
                   child: Image.asset(getStarted1Image),
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0,
-                    vertical: 20.0,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'What is your name?',
-                        style: TextStyle(
-                          color: boldColor,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1,
-                        ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 20.0,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'What is your name?',
+                      style: TextStyle(
+                        color: boldColor,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1,
                       ),
-
-                      Spacer(),
-                      MySearchField(controller: TextEditingController()),
-                      Gap(20),
-                      MyButton(
-                        text: "Start Ordering",
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );
-                        },
-                      ),
-                      Gap(20),
-                    ],
-                  ),
+                    ),
+                    const Gap(40),
+                    MySearchField(controller: controller, text: 'Tony'),
+                    const Gap(20),
+                    MyButton(
+                      text: "Start Ordering",
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
+                      },
+                    ),
+                    const Gap(20),
+                  ],
                 ),
               ),
             ],
