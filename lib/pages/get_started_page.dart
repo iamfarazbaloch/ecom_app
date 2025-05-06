@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../constant/images.dart';
+import 'authentication_page.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -39,19 +40,31 @@ class GetStartedPage extends StatelessWidget {
                       color: boldColor,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
                     ),
                   ),
                   Gap(10),
                   Text(
-                    'We deliver the best and freshest fruit salad in town. Order for a combo today!!!',
+                    'We deliver the best and freshest fruit salad\nin town. Order for a combo today!!!',
                     style: TextStyle(
                       color: boldColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
+                      letterSpacing: 1.5,
                     ),
                   ),
                   Spacer(),
-                  MyButton(),
+                  MyButton(
+                    text: "Let's Continue",
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AuthenticationPage(),
+                        ),
+                      );
+                    },
+                  ),
                   Gap(20),
                 ],
               ),
