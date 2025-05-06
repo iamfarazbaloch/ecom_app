@@ -56,7 +56,7 @@ class CategoryTile extends StatelessWidget {
               ],
             ),
           ),
-          // Favorite icon
+
           Positioned(
             top: 10,
             right: 10,

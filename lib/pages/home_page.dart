@@ -139,11 +139,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-
-              const SizedBox(height: 30),
+              Gap(10),
 
               SizedBox(
-                height: 130,
+                height: 200,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categoryList.length,
