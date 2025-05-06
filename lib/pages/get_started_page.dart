@@ -1,4 +1,5 @@
 import 'package:ecom_app/constant/colors.dart';
+import 'package:ecom_app/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -23,19 +24,37 @@ class GetStartedPage extends StatelessWidget {
               child: Image.asset(getStartedImage),
             ),
           ),
-          Gap(20),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 20.0,
-            ),
-            child: Column(
-              children: [
-                Text(
-                  'Get The Freshest Fruits Salad Combo',
-                  style: TextStyle(color: boldColor, fontSize: 20),
-                ),
-              ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 20.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Get The Freshest Fruits Salad Combo',
+                    style: TextStyle(
+                      color: boldColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Gap(10),
+                  Text(
+                    'We deliver the best and freshest fruit salad in town. Order for a combo today!!!',
+                    style: TextStyle(
+                      color: boldColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  Spacer(),
+                  MyButton(),
+                  Gap(20),
+                ],
+              ),
             ),
           ),
         ],

@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
-        textTheme: GoogleFonts.grandHotelTextTheme(),
+        textTheme: GoogleFonts.gafataTextTheme(),
       ),
       home: WelcomePage(),
     );
