@@ -11,49 +11,44 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 24),
+      padding: const EdgeInsets.only(right: 24, left: 16),
       child: Stack(
         children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 6,
-                  color: Colors.grey.shade200,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Image.asset(item.image!, fit: BoxFit.contain),
-                  ),
-                ),
-                Text(
-                  item.name!,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
-                  ),
-                ),
-                const Gap(10),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      item.price!,
-                      style: const TextStyle(color: orangeColor, fontSize: 20),
+          Card(
+            color: item.color,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Center(
+                      child: Image.asset(item.image!, fit: BoxFit.contain),
                     ),
-                    const Icon(Icons.add, color: orangeColor),
-                  ],
-                ),
-              ],
+                  ),
+                  Text(
+                    item.name!,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const Gap(10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        item.price!,
+                        style: const TextStyle(
+                          color: orangeColor,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const Icon(Icons.add, color: orangeColor),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
 
